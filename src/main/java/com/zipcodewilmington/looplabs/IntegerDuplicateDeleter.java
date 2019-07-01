@@ -2,6 +2,7 @@ package com.zipcodewilmington.looplabs;
 
 import org.omg.PortableInterceptor.INACTIVE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -25,26 +26,57 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        Integer[] noGood = new Integer[arr.length];
-        Integer counter = 0;
-        for (Integer i : arr
+//        Integer[] noGood = new Integer[arr.length];
+//        Integer counter = 0;
+//        for (Integer i : arr
+//        ) {
+//            long count = Arrays.stream(arr).filter(p -> p.equals(i)).count();
+//
+//            if (count == exactNumberOfDuplications) {
+//                noGood[counter] = i;
+//            } else {
+//                noGood[counter] = 10000;
+//            }
+//            counter++;
+//        }
+//
+//        Integer[] valuesToRemove = Arrays.stream(noGood).distinct().filter(p -> !p.equals(10000)).toArray(Integer[]::new);
+//
+////        Integer[] rslt = new Integer[arr.length - valuesToRemove.length];
+//        for (Integer i: valuesToRemove
+//             ) {
+//            removeValue(i,arr);
+//        }
+
+        arr
+
+
+
+
+
+
+
+
+
+
+
+        return arr;
+    }
+
+
+    public Integer []removeValue(Integer valueToRemove, Integer[] originalArray) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (Integer t: originalArray
         ) {
-            long count = Arrays.stream(arr).filter(p -> p.equals(i)).count();
-
-            if (count == exactNumberOfDuplications) {
-                noGood[counter] = i;
-            } else {
-                noGood[counter] = 10000;
+            if (!t.equals(valueToRemove)) {
+                arrayList.add(t);
             }
-            counter++;
         }
-
-        Integer[] valuesToRemove = Arrays.stream(noGood).distinct().filter(p -> !p.equals(10000)).toArray(Integer[]::new);
-
-        Integer[] rslt = new Integer[arr.length - valuesToRemove.length];
-
-
-        return rslt;
+        for (int i = 0; i < arrayList.size() ; i++) {
+            originalArray[i] = arrayList.get(i);
+        }
+        originalArray = Arrays.copyOf(originalArray,arrayList.size());
+        return originalArray;
     }
 
 }
