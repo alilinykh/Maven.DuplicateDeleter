@@ -12,10 +12,8 @@ import java.util.stream.Collectors;
  * @ATTENTION_TO_STUDENTS You are forbidden from modifying the signature of this class.
  */
 public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
-    private Integer[] arr;
     public IntegerDuplicateDeleter(Integer[] intArray) {
         super(intArray);
-        this.arr = intArray;
     }
 
     @Override
@@ -26,57 +24,27 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-//        Integer[] noGood = new Integer[arr.length];
-//        Integer counter = 0;
-//        for (Integer i : arr
-//        ) {
-//            long count = Arrays.stream(arr).filter(p -> p.equals(i)).count();
-//
-//            if (count == exactNumberOfDuplications) {
-//                noGood[counter] = i;
-//            } else {
-//                noGood[counter] = 10000;
-//            }
-//            counter++;
-//        }
-//
-//        Integer[] valuesToRemove = Arrays.stream(noGood).distinct().filter(p -> !p.equals(10000)).toArray(Integer[]::new);
-//
-////        Integer[] rslt = new Integer[arr.length - valuesToRemove.length];
-//        for (Integer i: valuesToRemove
-//             ) {
-//            removeValue(i,arr);
-//        }
 
-        arr
-
-
-
-
-
-
-
-
-
-
-
-        return arr;
-    }
-
-
-    public Integer []removeValue(Integer valueToRemove, Integer[] originalArray) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        for (Integer t: originalArray
-        ) {
-            if (!t.equals(valueToRemove)) {
-                arrayList.add(t);
+        Integer[] removeValues = new Integer[array.length];
+        int counter = 0;
+        int a = 0;
+        for (int i = 0; i < array.length ; i++) {
+            counter = 0;
+            for (int j = 0; j < array.length ; j++) {
+                if(array[i].equals(array[j])) {
+                    counter++;
+                    if(counter == exactNumberOfDuplications) {
+                        removeValues[a] = array[j];
+                        a++;
+                        break;
+                    }
+                }
             }
         }
-        for (int i = 0; i < arrayList.size() ; i++) {
-            originalArray[i] = arrayList.get(i);
-        }
-        originalArray = Arrays.copyOf(originalArray,arrayList.size());
-        return originalArray;
+        removeValues = Arrays.copyOf(array,counter);
+
+
+        return removeValues;
     }
 
 }
